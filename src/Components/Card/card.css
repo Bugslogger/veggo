@@ -1,0 +1,218 @@
+.card-container {
+    min-width: 300px;
+    border-radius: 10px;
+    height: 310px;
+    border: 1px solid #ffffff;
+    margin: 15px 8px;
+    cursor: pointer;
+    transition: all 0.2s linear;
+}
+
+.card-container:hover {
+    box-shadow: 2px 2px 30px 0px rgba(0, 0, 0, 0.2);
+    transform: scale(1.03);
+}
+
+.image-container {
+    width: 275px;
+    height: 205px;
+    margin: 10px auto;
+    border-radius: 10px;
+    overflow: hidden;
+    /* border: 1px solid red; */
+}
+
+.card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.9);
+}
+
+.card-title-container {
+    width: 275px;
+    height: 35px;
+    /* border: 1px solid; */
+    display: flex;
+    margin: 0 auto;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--headFont);
+    text-transform: capitalize;
+    letter-spacing: 1px;
+}
+
+.card-title {
+    /* border: 1px solid red; */
+    height: 100%;
+    font-size: 1.1em;
+    width: 230px;
+    display: grid;
+    text-transform: capitalize;
+    justify-items: left;
+    align-items: center;
+    overflow: hidden;
+}
+
+.card-rating-container {
+    border: 1px solid green;
+    height: 26px;
+    width: 43px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.1em;
+    color: #ffffff;
+    border-radius: 4px;
+    background-color: green;
+}
+
+.card-disc-container {
+    width: 275px;
+    height: 35px;
+    /* border: 1px solid purple; */
+    display: flex;
+    font-size: 1em;
+    margin: 0 auto;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--bodyFont);
+    text-transform: capitalize;
+    letter-spacing: 1px;
+    margin: 2px auto;
+}
+
+.card-desc {
+    width: 190px;
+    overflow: hidden;
+    /* height: 100%; */
+    font-size: 1em;
+    /* border: 1px solid; */
+}
+
+.card-price {
+    max-width: 85px;
+    font-size: 1.05em;
+    color: rgba(28, 28, 28, 0.8);
+    /* border: 1px solid yellowgreen; */
+    display: flex;
+    margin-right: 2px;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* card2 css */
+
+.card2-container {
+    min-width: 380px;
+    width: 320px;
+    height: 120px;
+    border: 3px solid #ffffff;
+    display: flex;
+    overflow: hidden;
+    justify-content: start;
+    align-items: center;
+    border-radius: 6px;
+    margin: 8px 10px;
+}
+
+.card2-container:hover, .card2-container:active{
+transform: scale(1.03);
+    box-shadow: 2px 2px 25px 0px rgba(0, 0, 0, 0.2);
+}
+
+.card2-image-container {
+    width: 280px;
+    height: 100%;
+    border-radius: 6px;
+    overflow: hidden;
+    /* border: 3px solid #ffffff; */
+}
+
+.card2-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card2-title-container {
+    width: 100%;
+    padding: 0 4px;
+    height: 100%;
+    text-transform: capitalize;
+    /* border: 1px solid red; */
+}
+
+.card2-name {
+    width: 100%;
+    max-height: 35px;
+    /* border: 1px solid; */
+    font-family: var(--bodyFont);
+    font-size: 0.95em;
+    font-weight: 600;
+    margin-top: 5px;
+    letter-spacing: 1px;
+    overflow: hidden;
+    color: rgba(0, 0, 0, 0.8);
+    text-transform: capitalize;
+}
+
+.card2-rating {
+    width: 100%;
+    height: 30px;
+    display: flex;
+    margin: 2px 0 8px 4px;
+    font-size: 1.1em;
+    /* color: var(--gClr); */
+    color: rgba(128, 128, 128, 0.6);
+    justify-content: start;
+    align-items: center;
+    /* border: 1px solid yellow; */
+}
+
+.card2-price {
+    width: 100%;
+    height: 30px;
+    /* border: 1px solid green; */
+    display: flex;
+    font-size: 0.95em;
+    font-family: var(--headFont);
+    color: rgba(128, 128, 128, 0.6);
+    margin-top: 12px;
+    justify-content: end;
+    align-items: center;
+    padding-right: 20px;
+}
+
+.card2-button-container {
+    height: 100%;
+    /* border: 1px solid pink; */
+    padding: 0 5px;
+}
+
+.card2-btn {
+    width: 56.6px;
+    height: 26px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 5px 10px;
+    font-family: var(--headFont);
+    font-weight: 600;
+    cursor: pointer;
+    border: 1px solid rgba(0, 128, 0, 0.5);
+    font-size: 0.8em;
+    /* border: none; */
+    background-color: #ffffff;
+    color: var(--gClr);
+    letter-spacing: 1px;
+    border-radius: 3px;
+    margin-top: 10px;
+}
+
+.card2-btn:hover,
+.card2-btn:active {
+    color: #ffffff;
+    background-color: var(--gClr);
+}

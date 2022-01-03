@@ -1,0 +1,220 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    user-select: none;
+    /* disables highlight color on click */
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+@font-face {
+    font-family: headfont;
+    src: url("./font/Poppins/Poppins-Regular.ttf");
+}
+
+@font-face {
+    font-family: bodyfont;
+    src: url("./font/Quicksand/Quicksand-VariableFont_wght.ttf");
+}
+
+:root {
+    --gClr: #48A14D;
+    --headFont: headfont;
+    --bodyFont: bodyfont;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+a {
+    text-decoration: none;
+    color: currentColor;
+}
+
+.App {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.app-head-container {
+    width: 100%;
+    height: auto;
+    position: sticky;
+    top: 0;
+    z-index: 99999999999999999;
+    overflow: hidden;
+    background-color: #fff;
+}
+
+.app-relative-container {
+    width: 100%;
+    height: 100%;
+    overflow: scroll;
+}
+
+.app-header-section {
+    width: 100%;
+    height: auto;
+}
+
+
+/* h2 indicator */
+
+.hs2-container {
+    width: 100%;
+    position: sticky;
+    top: 0;
+    height: 170px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    overflow: hidden;
+    z-index: 99999;
+    background-color: #fff;
+}
+
+.hs2-indicator {
+    width: 100%;
+    height: 80px;
+    padding-top: 20px;
+    border-bottom: 3px solid rgba(128, 128, 128, 0.3);
+    display: flex;
+    justify-content: start;
+    align-items: c;
+}
+
+.hs2-ind-one {
+    margin: 0 5px;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 10px;
+    color: rgba(128, 128, 128, 0.5);
+    font-family: var(--headFont);
+    text-transform: cap;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.ind-text {
+    /* border: 1px solid; */
+    margin: 0 10px;
+    color: currentColor;
+    letter-spacing: 1px;
+    height: 100%;
+    display: grid;
+    place-items: center;
+}
+
+.ind-active {
+    border-bottom: 4px solid var(--gClr);
+    color: var(--gClr);
+}
+
+
+/* end */
+
+
+/* h3 hs slider */
+
+.h3-slider-container {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    /* border: 1px solid; */
+    margin: 20px 0;
+    /* background-color: rgba(0, 0, 0, 0.15); */
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    overflow: scroll;
+}
+
+.item-container {
+    /* border: 1px solid; */
+    min-width: 180px;
+    height: 180px;
+    width: 180px;
+    display: grid;
+    place-items: center;
+    margin: 0 10px;
+}
+
+.item-image {
+    width: 140px;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid rgba(255, 255, 255, 1);
+    overflow: hidden;
+    box-shadow: 2px 2px 25px 0px rgba(0, 0, 0, 0.3);
+}
+
+.item-name {
+    font-family: var(--bodyFont);
+    text-transform: capitalize;
+    letter-spacing: 1px;
+    color: var(--gClr);
+    font-weight: 600;
+    font-size: 1.2em;
+    letter-spacing: 1px;
+}
+
+
+/* arrow indicator */
+
+.ind-left-arrow,
+.ind-right-arrow {
+    /* border: 1px solid; */
+    padding: 5px;
+    border-radius: 50%;
+    display: grid;
+    background-color: #fff;
+    place-items: center;
+    margin: 0 5px;
+    cursor: pointer;
+    position: absolute;
+    box-shadow: 2px 2px 25px rgba(156, 84, 84, 0.1), -2px -2px 25px rgba(0, 0, 0, 0.1);
+}
+
+.ind-left-arrow {
+    left: 0;
+}
+
+.ind-right-arrow {
+    right: 0;
+}
+
+.sub-heading {
+    width: 94%;
+    margin: 0 auto;
+    font-family: var(--headFont);
+    text-transform: capitalize;
+    letter-spacing: 2px;
+    margin-top: 30px;
+    font-size: 1.9em;
+    color: rgba(128, 128, 128, 0.85);
+}
+
+/* filter css */
+.filter-container{
+    width: 100%;
+    height: 100px;
+    border: 1px solid;
+    margin: 10px 0;
+}
+.filter-box{
+    
+}
