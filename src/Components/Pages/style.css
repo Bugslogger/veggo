@@ -7,6 +7,7 @@
     justify-content: center;
     flex-wrap: wrap;
     padding: 20px 8px;
+    /* text-decoration: none; */
     /* border: 1px solid; */
 }
 
@@ -38,10 +39,11 @@
 
 .cart-container {
     width: 100%;
-    height: 100vh;
+    height: calc(100vh - 70px);
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow-y: scroll;
 }
 
 .no-item-in-cart {
@@ -49,6 +51,7 @@
     height: auto;
     display: grid;
     place-items: center;
+    text-align: center;
     font-size: 1.4em;
     font-family: var(--headFont);
     color: rgba(128, 128, 128, 0.5);
@@ -74,4 +77,182 @@
 .niic-btn:hover {
     color: var(--gClr);
     border-color: var(--gClr);
+}
+
+
+/* login page css */
+
+.lp-container {
+    width: 100%;
+    height: calc(100vh - 70px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.lp-left-container, .lp-right-container {
+    width: 50%;
+    height: 100%;
+
+}
+
+.lp-left-container {
+    position: relative;
+    display: grid;
+    place-items: center;
+}
+
+.lp-image {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+
+}
+
+.lp-left-container::before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.lp-text-container {
+    position: absolute;
+    width: 100%;
+    height: auto;
+    display: grid;
+    z-index: 999999999999;
+    place-items: center;
+}
+
+.lp-title {
+    width: 100%;
+    height: auto;
+    text-align: center;
+    color: #fff;
+    font-size: 65px;
+    margin: 5px 0;
+    letter-spacing: 0.1em;
+    font-family: var(--bodyFont);
+}
+
+.lp-caption {
+    color: #ffffff;
+    font-family: var(--headFont);
+    word-spacing: 1px;
+    font-size: 20px;
+}
+
+.lp-right-container {
+    padding: 20px 0;
+}
+
+.lp-form {
+    width: 500px;
+    height: auto;
+    display: grid;
+    place-items: center;
+    margin: 10px auto;
+}
+
+.lp-btn {
+    width: 90%;
+    height: 50px;
+    margin: 20px auto 10px auto;
+    font-family: var(--headFont);
+    font-size: 21px;
+    letter-spacing: 1px;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+    background-color: var(--gClr);
+    color: #ffffff;
+}
+
+.lp-btn:hover {
+    color: var(--gClr);
+    background-color: #ffffff;
+    letter-spacing: 3px;
+    border: 1px solid var(--gClr);
+}
+
+.form-title {
+    width: 100%;
+    height: auto;
+    margin: 50px 0 10px 0;
+    text-align: center;
+    font-family: var(--bodyFont);
+    letter-spacing: 2px;
+    color: var(--gClr);
+}
+
+.lp-form-switch {
+    margin: 15px auto;
+    font-family: var(--bodyFont);
+    letter-spacing: 1px;
+    font-size: 20px;
+    color: rgba(128, 128, 128, 0.8);
+    cursor: pointer;
+}
+
+.lp-form-switch:hover {
+    text-decoration: underline;
+    color: var(--gClr);
+}
+
+.auth-social-icon {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
+    margin: 10px 0 0 0;
+}
+
+.google-auth, .facebook-auth {
+    margin: 0 30px;
+    font-size: 2.5em;
+    cursor: pointer;
+}
+
+.google-auth {
+    color: #bb001b;
+}
+
+.facebook-auth {
+    color: #3b5998;
+    font-size: 2.7em;
+}
+
+.google-auth:hover, .facebook-auth:hover {
+    color: var(--gClr);
+}
+
+@media screen and (max-width: 1000px) {
+    .lp-form {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 850px) {
+    .lp-left-container {
+        display: none;
+    }
+
+    .lp-right-container {
+        width: 100%;
+        height: 100%;
+        padding: 0;
+        margin: 0;
+    }
+
+    .lp-container {
+        height: 100%;
+    }
 }

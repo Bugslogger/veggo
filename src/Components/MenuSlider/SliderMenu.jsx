@@ -9,8 +9,8 @@ const SliderMenu = ({click}) => {
         <div className="slider-menu-container">
             <div className="slider-menu">
                 <ul className="slider-menu-list">
-                    <li className="slider-list">
-                        <Link onClick={click} to="/">
+                    <li onClick={click} className="slider-list">
+                        <Link  to="/">
                             Home
                         </Link>
                     </li>
@@ -19,14 +19,19 @@ const SliderMenu = ({click}) => {
                             Orders
                         </Link>
                     </li>
-                    <li className="slider-list">
-                        <Link onClick={click} to="/profile">
+                    <li onClick={click} className="slider-list">
+                        <Link  to="/profile">
                             Profile
                         </Link>
                     </li>
                     <li className="slider-list">
                         <Link onClick={click} to="/about">
                             About
+                        </Link>
+                    </li>
+                    <li className="slider-list">
+                        <Link onClick={click} to="/login">
+                            Login
                         </Link>
                     </li>
                 </ul>

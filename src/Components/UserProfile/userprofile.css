@@ -23,12 +23,13 @@
 }
 
 .up-list {
-    width: 100%;
+    width: 90%;
     height: 40px;
     font-family: var(--headFont);
     letter-spacing: 0.05em;
     font-size: 1.1em;
     background-color: #fff;
+    margin:  0 auto;
     cursor: pointer;
     border-bottom: 1px solid rgba(128, 128, 128, 0.3);
     padding: 8px 0;
@@ -87,7 +88,7 @@
 
 label,
 .input,
-.input-btn {
+.input-btn, .logout {
     width: 90%;
     height: auto;
     margin: 5px auto;
@@ -97,7 +98,7 @@ label,
 }
 
 .input,
-.input-btn {
+.input-btn, .logout {
     height: 40px;
     border: 1px solid rgba(128, 128, 128, 0.3);
     color: rgba(128, 128, 128, 0.6);
@@ -112,6 +113,15 @@ label,
     cursor: pointer;
 }
 
+.logout{
+    font-size: 1.1em;
+    border: none;
+    background-color: red;
+    color: #fff;
+    margin: 20px auto;
+    cursor: pointer;
+}
+
 .input-btn:hover,
 .input-btn:active {
     color: var(--gClr);
@@ -119,6 +129,11 @@ label,
     border: 1.5px solid var(--gClr);
 }
 
+.logout:hover {
+    color: red;
+    background-color: #fff;
+    border: 1.5px solid red;
+}
 
 /* review card  */
 
@@ -362,11 +377,13 @@ label,
 
 .up-menu-pop {
     width: 120px;
+    background-color: #ffffff;
     position: fixed;
     padding: 8px 0;
     border: 1px solid rgba(128, 128, 128, 0.3);
-    border-radius: 10px;
+    border-radius: 4px;
     overflow: hidden;
+    z-index: 99999999;
     margin: 0 10px;
     transition: all 0.3s ease-in-out;
 }
@@ -381,7 +398,8 @@ label,
 .tooltip-border {
     width: 100%;
     /* border: 1px solid; */
-    padding: 5px 8px;
+    padding: 10px 8px;
+    cursor: pointer;
     list-style: none;
     /* border-bottom: 1px solid rgba(128, 128, 128, 0.3); */
 }
@@ -395,13 +413,16 @@ label,
         width: 96%;
         min-width: 290px;
     }
+
     .rc-container {
         width: 98%;
         min-width: 290px;
     }
+
     .up-left-container {
         width: 150px;
     }
+
     .up-right-container {
         width: calc(100% - 150px);
     }
@@ -412,16 +433,20 @@ label,
         width: 96%;
         min-width: 290px;
     }
+
     .rc-container {
         width: 98%;
         min-width: 290px;
     }
+
     .up-left-container {
         display: none;
     }
+
     .up-menuicon {
         display: block;
     }
+
     .up-right-container {
         width: 100%;
     }
@@ -432,6 +457,7 @@ label,
         width: 96%;
         min-width: 290px;
     }
+
     .rc-container {
         width: 98%;
         min-width: 290px;

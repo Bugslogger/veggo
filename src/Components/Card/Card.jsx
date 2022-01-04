@@ -81,6 +81,7 @@ export const OrderCard = ({
   itemName,
   itemPrice,
   qty,
+  show
 }) => {
   return (
     <div className="order-card-container">
@@ -94,19 +95,21 @@ export const OrderCard = ({
             <div className="oc-p"><CurrencyRupeeIcon style={{fontSize: "1em"}} /> {itemPrice}</div>
             <div className="oc-q">{`QTY: ${qty}kg`}</div>
           </div>
-          <div className="oc-star">
+          {show ? null : <div className="oc-star">
             <Star style={styles.star} />
             <Star style={styles.star} />
             <Star style={styles.star} />
             <Star style={styles.star} />
             <Star style={styles.star} />
-          </div>
+          </div>}
         </div>
       </div>
-      <div className="oc-bot-btn">
+      {show ? <div className="oc-bot-btn">
+        <div className="oc-left-btn">{show}</div>
+      </div>:<div className="oc-bot-btn">
         <div className="oc-left-btn">Repeat Order</div>
         <div className="oc-right-btn">Write Review</div>
-      </div>
+      </div>}
     </div>
   )
 }

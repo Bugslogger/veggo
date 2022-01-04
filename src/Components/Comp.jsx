@@ -1,6 +1,12 @@
 import React from "react";
 import DeliveryDiningIcon from "@mui/icons-material/DeliveryDining";
-
+import Button from "@mui/material/Button";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
+import Slide from "@mui/material/Slide";
 
 // image slider catagory
 const ImageSlider = ({ image, name }) => {
@@ -11,7 +17,6 @@ const ImageSlider = ({ image, name }) => {
     </div>
   );
 };
-
 
 // home indicator
 export const Indicator = () => {
@@ -48,8 +53,8 @@ export const Indicator = () => {
 };
 
 // filter component
-export const Filter = () =>{
-  return(
+export const Filter = () => {
+  return (
     <div className="filter-container">
       <div className="filter-box"></div>
       <div className="filter-box"></div>
@@ -57,9 +62,41 @@ export const Filter = () =>{
       <div className="filter-box"></div>
       <div className="filter-box"></div>
     </div>
-  )
+  );
+};
+
+// modal dialogue
+
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
+
+export function AlertDialogSlide({ errorText, bool, handleClose }) {
+  return (
+    <div>
+      {/* <Button variant="outlined" onClick={handleClickOpen}>
+        Slide in alert dialog
+      </Button> */}
+      <Dialog
+        open={bool}
+        TransitionComponent={Transition}
+        keepMounted
+        onClose={handleClose}
+        aria-describedby="alert-dialog-slide-description"
+      >
+        {/* <DialogTitle>{"Use Google's location service?"}</DialogTitle> */}
+        <DialogContent>
+          <DialogContentText id="alert-dialog-slide-description">
+            {errorText}
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          {/* <Button onClick={handleClose}>Disagree</Button> */}
+          <Button onClick={handleClose}>Ok</Button>
+        </DialogActions>
+      </Dialog>
+    </div>
+  );
 }
-
-
 
 export default ImageSlider;
