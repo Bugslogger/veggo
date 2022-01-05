@@ -11,11 +11,7 @@ const HeaderSection = () => {
             </div>
             <div className="hs-search-text-container">
                 <div className="hs-search-box-container">
-                    <h2 style={{
-                        letterSpacing: "0.4em",
-                        margin: "5px 0 10px 0",
-                        fontSize: "3.5em"
-                    }} className="h3-title">Capsikon</h2>
+                    <h2 className="h2-title">Capsikon</h2>
                     <h3 className="h3-title">Fresh Vegitables, Healthy Vegitables</h3>
                     <div className="search-bar-wrapper">
                         <DataList />

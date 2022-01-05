@@ -27,7 +27,7 @@ export const Indicator = () => {
           <div className="ind-one-icon ">
             <DeliveryDiningIcon
               sx={{
-                fontSize: "44px",
+                fontSize: "34px",
                 color: "#48A14D",
                 marginTop: "6px",
               }}
@@ -39,7 +39,7 @@ export const Indicator = () => {
           <div className="ind-one-icon">
             <DeliveryDiningIcon
               sx={{
-                fontSize: "44px",
+                fontSize: "34px",
                 color: "rgba(128,128,128,0.50)",
                 marginTop: "6px",
               }}
@@ -98,5 +98,7 @@ export function AlertDialogSlide({ errorText, bool, handleClose }) {
     </div>
   );
 }
+
+
 
 export default ImageSlider;

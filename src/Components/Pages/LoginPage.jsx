@@ -1,5 +1,6 @@
 import { FacebookRounded, Google } from "@mui/icons-material";
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -28,17 +29,19 @@ const LoginPage = () => {
     phone: "",
     errorText: "",
     errorShow: false,
+    auth: false,
   });
 
+  const navigate = useNavigate();
+
   useEffect(() => {
+    console.log("navigate", navigate);
     const auth = getAuth();
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        
-        // console.log("if: ",user.accessToken);
+        navigate("/");
       } else {
-        console.log("else: ",user);
-       }
+      }
     });
   }, []);
 
@@ -53,6 +56,9 @@ const LoginPage = () => {
 
   // close pop dialogue
   const CloseModal = () => {
+    if (Error.auth) {
+      navigate("/");
+    }
     setError({ ...Error, errorShow: false });
   };
 
@@ -113,14 +119,15 @@ const LoginPage = () => {
         signInWithEmailAndPassword(auth, formData.email, formData.password)
           .then((userCredential) => {
             // Signed in
-            const user = userCredential.user;
+            // const user = userCredential.user;
             setError({
               ...Error,
               errorText: "You are now Logged In ",
               errorShow: true,
+              auth: true,
             });
             // ...
-            console.log(user);
+            // console.log(user);
           })
           .catch((error) => {
             const errorMessage = error.message;

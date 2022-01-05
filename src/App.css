@@ -40,6 +40,7 @@ a {
 }
 
 .App {
+    min-width: 300px;
     width: 100%;
     height: auto;
     display: flex;
@@ -92,7 +93,7 @@ a {
     border-bottom: 3px solid rgba(128, 128, 128, 0.3);
     display: flex;
     justify-content: start;
-    align-items: c;
+    align-items: center;
 }
 
 .hs2-ind-one {
@@ -103,7 +104,7 @@ a {
     align-items: center;
     padding: 5px 10px;
     color: rgba(128, 128, 128, 0.5);
-    font-family: var(--headFont);
+    font-family: var(--bodyFont);
     text-transform: cap;
     font-size: 25px;
     cursor: pointer;
@@ -111,11 +112,12 @@ a {
 
 .ind-text {
     /* border: 1px solid; */
-    margin: 0 10px;
+    margin: 0 5px;
     color: currentColor;
     letter-spacing: 1px;
     height: 100%;
     display: grid;
+    font-size: 20px;
     place-items: center;
 }
 
@@ -141,6 +143,7 @@ a {
     align-items: center;
     justify-content: start;
     overflow: scroll;
+    scroll-behavior: smooth;
 }
 
 .item-container {
@@ -186,7 +189,7 @@ a {
     place-items: center;
     margin: 0 5px;
     cursor: pointer;
-    position: absolute;
+    position: sticky;
     box-shadow: 2px 2px 25px rgba(156, 84, 84, 0.1), -2px -2px 25px rgba(0, 0, 0, 0.1);
 }
 
@@ -215,7 +218,4 @@ a {
     height: 100px;
     border: 1px solid;
     margin: 10px 0;
-}
-.filter-box{
-    
 }

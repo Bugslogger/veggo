@@ -216,3 +216,70 @@ transform: scale(1.03);
     color: #ffffff;
     background-color: var(--gClr);
 }
+
+/* address card */
+
+.address-container{
+    min-width: 400px;
+    height: auto;
+    margin: 8px auto;
+    display: grid;
+    justify-items: end;
+    align-items: center;
+    /* border: 1px solid; */
+}
+
+.ac-radio{
+    width: 18px;
+    height: 18px;
+    margin: 5px;
+    float: right;
+}
+.address{
+    width: 98%;
+    margin: 0 auto;
+    height: 100%;
+    font-family: var(--bodyFont);
+    letter-spacing: 1px;
+    font-size: 18px;
+    padding: 6px 0;
+    /* border: 1px solid purple; */
+}
+.a-name,
+.a-email,
+.a-phone,
+.a-address{
+margin: 3px 0;
+}
+.a-btn{
+    width: 100%;
+    border: none;
+    cursor: pointer;
+    font-family: var(--headFont);
+    letter-spacing: 2px;
+    color: #ffffff;
+    background-color: var(--gClr);
+    font-size: 18px;
+    height: 40px;
+}
+.a-btn:hover{
+    background-color: #ffffff;
+    color: var(--gClr);
+    border: 1px solid var(--gClr);
+}
+
+/* address form */
+.af-form-container{
+    width: 96%;
+    margin: 20px auto;
+    display: grid;
+    place-items: center;
+    
+}
+
+@media screen and (max-width: 550px) {
+ 
+ .address-container{
+     width: 96%;
+ }
+}

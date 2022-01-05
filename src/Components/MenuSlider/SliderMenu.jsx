@@ -1,10 +1,23 @@
 // import { Close } from '@mui/icons-material';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import "../Head/head.css";
-
+import {getAuth, onAuthStateChanged} from 'firebase/auth';
 
 const SliderMenu = ({click}) => {
+
+    const [ShowLink, setShowLink] = useState(false);
+
+    useEffect(() => {
+        onAuthStateChanged(getAuth(), (user)=>{
+            if(user){
+                setShowLink(true);
+            } else {
+                setShowLink(false);
+            }
+        })
+    }, [])
+
     return (
         <div className="slider-menu-container">
             <div className="slider-menu">
@@ -14,7 +27,7 @@ const SliderMenu = ({click}) => {
                             Home
                         </Link>
                     </li>
-                    <li className="slider-list">
+                   {ShowLink ?<> <li className="slider-list">
                         <Link onClick={click} to="/orders">
                             Orders
                         </Link>
@@ -23,17 +36,17 @@ const SliderMenu = ({click}) => {
                         <Link  to="/profile">
                             Profile
                         </Link>
-                    </li>
+                    </li> </>: null}
                     <li className="slider-list">
                         <Link onClick={click} to="/about">
                             About
                         </Link>
                     </li>
-                    <li className="slider-list">
+                   {!ShowLink ? <li className="slider-list">
                         <Link onClick={click} to="/login">
                             Login
                         </Link>
-                    </li>
+                    </li>:null}
                 </ul>
             </div>
         </div>

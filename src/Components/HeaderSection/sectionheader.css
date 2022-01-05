@@ -54,10 +54,19 @@
 .h3-title {
     width: 100%;
     color: #fff;
+    font-family: var(--bodyFont);
+    text-transform: capitalize;
+    letter-spacing: 5px;
+    font-size:40px;
+    text-align: center;
+}
+.h2-title{
+    width: 100%;
+    color: #fff;
     font-family: var(--headFont);
     text-transform: capitalize;
-    letter-spacing: 0.08em;
-    font-size: 3em;
+    letter-spacing: 15px;
+    font-size: 60px;
     text-align: center;
 }
 
@@ -149,7 +158,11 @@ input {
 
 @media screen and (max-width: 430px) {
     .h3-title {
-        font-size: 1.8em;
+        font-size:26px;
+    }
+    .h2-title {
+        font-size: 36px;
+        letter-spacing: 8px;
     }
 }
 
@@ -157,10 +170,17 @@ input {
     .h3-title {
         font-size: 1.5em;
     }
+    .h2-title {
+        font-size: 36px;
+        letter-spacing: 8px;
+    }
 }
 
 @media screen and (max-width: 270px) {
     .h3-title {
         font-size: 1em;
+    }
+    .h2-title {
+        font-size: 1.3em;
     }
 }

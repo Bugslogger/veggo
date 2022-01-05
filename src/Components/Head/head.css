@@ -71,15 +71,15 @@
     /* color: var(--gClr); */
 }
 
-.list:nth-child(5) {
+.login {
     height: 35px;
     background-color: var(--gClr);
     font-weight: 600;
     color: #ffffff;
 }
 
-.list:nth-child(5):hover,
-.list:nth-child(5):active {
+.login:hover,
+.login:active {
     color: var(--gClr);
     background-color: #ffffff;
 }

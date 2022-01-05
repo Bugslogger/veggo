@@ -1,14 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./userprofile.css";
 import image from "../../images/cover.jpg";
-import { Link, NavLink, Route, Routes } from "react-router-dom";
-import { OrderCard, ReviewCard } from "../Card/Card";
-import { order, review } from "../../data";
+import { ReviewCard } from "../Card/Card";
+import { review } from "../../data";
 import { Settings } from "@mui/icons-material";
-import { useDispatch, useSelector } from "react-redux";
-import { Logout } from "../Redux/Action";
 import { AlertDialogSlide } from "../Comp";
 import Order from "../Cart/Order";
+import { useNavigate } from "react-router-dom";
+import { getAuth, signOut, onAuthStateChanged } from "@firebase/auth";
 
 const styles = {
   link: {
@@ -18,9 +17,6 @@ const styles = {
   },
 };
 const UserProfile = () => {
-  const playloadValue = useSelector((state) => state.IsLogout);
-  const dispatch = useDispatch();
-
   const [Check, setCheck] = useState(false);
   const [pop, setpop] = useState(false);
   const [switchComponent, setswitchComponent] = useState({
@@ -32,13 +28,40 @@ const UserProfile = () => {
     email: false,
     phone: false,
     name: false,
-    bool: true,
+    bool: false,
   });
   const [formData, setformData] = useState({
     name: "",
     tel: "",
     email: "",
   });
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    onAuthStateChanged(getAuth(), (user)=>{
+      if(user){
+        // navigate("")
+      } else {
+        navigate('/');
+      }
+    })
+  }, []);
+
+  // function is called when user click on logout button
+  const Logout = () => {
+    signOut(getAuth())
+      .then(() => {
+        // Sign-out successful.
+        navigate("/");
+        setError({ ...Error, bool: true });
+      })
+      .catch((error) => {
+        // An error happened.
+        console.log(error);
+        setError({ ...Error, bool: false });
+      });
+  };
 
   const handleFormValidate = (getName, getValue) => {
     if (getName === "Email") {
@@ -93,6 +116,7 @@ const UserProfile = () => {
   // const LogoutUser = (e) =>{e.preventDefault();}
 
   const CloseDialogue = () => {
+    navigate();
     setError({ ...Error, bool: false });
   };
 
@@ -278,10 +302,7 @@ const UserProfile = () => {
               )}
               <input
                 style={{ margin: "0 auto" }}
-                onClick={() => {
-                  setError({ ...Error, bool: true });
-                  dispatch(Logout());
-                }}
+                onClick={Logout}
                 className="logout"
                 type="submit"
                 value="Logout"
@@ -312,9 +333,9 @@ const UserProfile = () => {
           </div>
         ) : null}
       </div>
-      {Error.bool && playloadValue.isLogout ? (
+      {Error.bool ? (
         <AlertDialogSlide
-          errorText={playloadValue.message}
+          errorText="You HAve Been Logged out."
           handleClose={CloseDialogue}
           bool={true}
         />

@@ -1,10 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import "./head.css";
 import { Close, Menu } from "@mui/icons-material";
 import { Link, NavLink } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { chekcAuth } from "../Redux/Action";
+import {getAuth, onAuthStateChanged} from 'firebase/auth';
 
 const styles = {
   link: {
@@ -15,14 +14,17 @@ const styles = {
 };
 
 const Head = ({ clickMenu, toggleIcons }) => {
-  // const isUser = useSelector((state) => state.IsLogout);
-  // const dispatch = useDispatch();
 
-  // checkuser login
-  // useEffect(() => {
-  //   dispatch(chekcAuth());
-  //   console.log(isUser);
-  // }, []);
+  const [checkAuth, setcheckAuth] = useState(false);
+  useEffect(() => {
+    onAuthStateChanged(getAuth(), (user) => {
+      if (user) {
+        setcheckAuth(true);
+      } else {
+       setcheckAuth(false);
+      }
+    });
+  }, []);
 
   return (
     <div className="head-container">
@@ -40,7 +42,8 @@ const Head = ({ clickMenu, toggleIcons }) => {
               Home
             </NavLink>
           </li>
-          <li className="list">
+{ checkAuth ?
+          <><li className="list">
             <NavLink
               className={({ isActive }) => (isActive ? "active" : null)}
               to="/profile"
@@ -55,7 +58,8 @@ const Head = ({ clickMenu, toggleIcons }) => {
             >
               Orders
             </NavLink>
-          </li>
+          </li></>
+          :null}
           <li className="list">
             <NavLink
               className={({ isActive }) => (isActive ? "active" : null)}
@@ -64,9 +68,12 @@ const Head = ({ clickMenu, toggleIcons }) => {
               About
             </NavLink>
           </li>
-            <li className="list">
+{ checkAuth ? null :
+            <li className="list login">
               <Link to="/login">login</Link>
             </li>
+
+            }
         </ul>
         <div className="head-icon-container">
           <div className="cart-icon">

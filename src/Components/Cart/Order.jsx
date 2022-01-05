@@ -1,9 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { order } from "../../data";
 import { OrderCard } from "../Card/Card";
 import './style.css';
+import {getAuth, onAuthStateChanged} from 'firebase/auth';
+import { useNavigate } from "react-router-dom";
 
 const Order = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    onAuthStateChanged(getAuth(), (user)=>{
+      if(user){
+        // navigate("")
+      } else {
+        navigate('/');
+      }
+    })
+  }, []);
+
   return (
     <div className="order-page-container">
       <div className="order-page-subheader">Your Order On The Way</div>
