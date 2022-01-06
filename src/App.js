@@ -37,7 +37,7 @@ function App() {
     <div className="App">
       <div className="app-head-container">
         <Head toggleIcons={showMenu} clickMenu={menuToggle} />
-        {showMenu ? <SliderMenu click={showMenu} /> : null}
+        {showMenu ? <SliderMenu click={menuToggle} /> : null}
       </div>
         {/* <Items/> */}
         <Routes>

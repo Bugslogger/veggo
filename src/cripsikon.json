@@ -1,0 +1,71 @@
+{
+    "shopName": "",
+    "shopID": "",
+    "shopAddress": "",
+    "shopRating": {
+        "user": [{
+            "userID": "",
+            "rating": "",
+            "review": ""
+        },
+        {
+            "userID": "",
+            "rating": "",
+            "review": ""
+        },
+        {
+            "userID": "",
+            "rating": "",
+            "review": ""
+        },
+        {
+            "userID": "",
+            "rating": "",
+            "review": ""
+        }]
+    },
+    "itemsInShop": {
+        "items": {
+            "itemID": 1,
+            "itemName": "",
+            "itemPrice": "",
+            "isAvailable": "",
+            "itemImage": "",
+            "rating": {
+                "itemReview": [
+                    {
+                        "userID": "", "userName": "",
+                        "userImageUrl": "",
+                        "review": "",
+                        "rating": ""
+                    },
+                    {
+                        "userID": "", "userName": "",
+                        "userImageUrl": "",
+                        "review": "",
+                        "rating": ""
+                    },
+                    {
+                        "userID": "", "userName": "",
+                        "userImageUrl": "",
+                        "review": "",
+                        "rating": ""
+                    },
+                    {
+                        "userID": "", "userName": "",
+                        "userImageUrl": "",
+                        "review": "",
+                        "rating": ""
+                    },
+                    {
+                        "userID": "", "userName": "",
+                        "userImageUrl": "",
+                        "review": "",
+                        "rating": ""
+                    }
+                ]
+            }
+        }
+    }
+    
+}

@@ -57,8 +57,10 @@
     width: 400px;
     height: auto;
     /* border: 1px solid; */
+    padding: 20px 5px;
     display: grid;
-    margin: 10px auto;
+    margin: 10px auto 90px auto;
+    /* overflow-y: scroll; */
     place-items: center;
 }
 

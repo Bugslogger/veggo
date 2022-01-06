@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./userprofile.css";
-import image from "../../images/cover.jpg";
+// import image from "../../images/cover.jpg";
 import { ReviewCard } from "../Card/Card";
 import { review } from "../../data";
 import { Settings } from "@mui/icons-material";
@@ -8,7 +8,7 @@ import { AlertDialogSlide } from "../Comp";
 import Order from "../Cart/Order";
 import { useNavigate } from "react-router-dom";
 import { getAuth, signOut, onAuthStateChanged } from "@firebase/auth";
-
+import {getFirestore, doc, getDoc, setDoc} from "firebase/firestore";
 const styles = {
   link: {
     width: "100%",
@@ -34,6 +34,7 @@ const UserProfile = () => {
     name: "",
     tel: "",
     email: "",
+    image: "",
   });
 
   const navigate = useNavigate();
@@ -41,7 +42,13 @@ const UserProfile = () => {
   useEffect(() => {
     onAuthStateChanged(getAuth(), (user)=>{
       if(user){
-        // navigate("")
+        // console.log(user);
+        getDoc(doc(getFirestore(), "user", user.uid))
+        .then(credentials=>{
+          let getCredentials = credentials.data().user;
+          // console.log(credentials.data().user);
+          setformData({...formData, name: getCredentials.displayName, email: getCredentials.email, image: getCredentials.photoUrl, id: credentials.id})
+        })
       } else {
         navigate('/');
       }
@@ -94,17 +101,20 @@ const UserProfile = () => {
     }
   };
 
+  // update user data
   const FormUpdate = (e) => {
     e.preventDefault();
     if (formData.email !== "" && formData.name !== "" && formData.tel !== "") {
+      // setDoc(doc(getFirestore(), "user", formData.id, {
+
+      // }))
       setCheck(false);
-      alert("submited");
     } else {
       alert("empty field");
     }
   };
   // console.log(playloadValue);
-
+// displays on mobile view
   const handleSettingClick = () => {
     if (pop) {
       setpop(false);
@@ -233,7 +243,7 @@ const UserProfile = () => {
         {switchComponent.one ? (
           <div className="up-profile-container">
             <div className="up-image-container">
-              <img src={image} alt="" className="user-image" />
+              <img src={formData.image} alt="" className="user-image" />
             </div>
             <form onSubmit={(e) => e.preventDefault()} className="up-form">
               <label htmlFor="name">Name</label>
@@ -244,7 +254,9 @@ const UserProfile = () => {
                   handleFormValidate(e.target.name, e.target.value)
                 }
                 style={{
+                  color: "grey",
                   borderColor: Error.name ? "red" : "rgba(128,128,128,0.3)",
+
                 }}
                 className="input"
                 type="text"
@@ -259,6 +271,7 @@ const UserProfile = () => {
                   handleFormValidate(e.target.name, e.target.value)
                 }
                 style={{
+                  color: "grey",
                   borderColor: Error.phone ? "red" : "rgba(128,128,128,0.3)",
                 }}
                 className="input"
@@ -274,6 +287,7 @@ const UserProfile = () => {
                   handleFormValidate(e.target.name, e.target.value)
                 }
                 style={{
+                  color: "grey",
                   borderColor: Error.email ? "red" : "rgba(128,128,128,0.3)",
                 }}
                 className="input"

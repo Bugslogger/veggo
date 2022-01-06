@@ -50,6 +50,7 @@ export const HomeCard = [{
         id: 0,
         title: "Name Of Shop",
         rating: "4",
+        catagory: "",
         price: 38,
         desc: "card discription here"
     }, {
@@ -57,6 +58,7 @@ export const HomeCard = [{
         id: 1,
         title: "Name Of Shop",
         rating: "5",
+        catagory: "",
         price: 40,
         desc: "card discription here"
     }, {
@@ -64,6 +66,7 @@ export const HomeCard = [{
         id: 2,
         title: "Name Of Shop",
         rating: "3",
+        catagory: "",
         price: 20,
         desc: "card discription here"
     }, {
@@ -71,6 +74,7 @@ export const HomeCard = [{
         id: 3,
         title: "Name Of Shop",
         rating: "5",
+        catagory: "",
         price: 10,
         desc: "card discription here"
     },
@@ -79,6 +83,7 @@ export const HomeCard = [{
         id: 4,
         title: "Name Of Shop",
         rating: "5",
+        catagory: "",
         price: 28,
         desc: "card discription here"
     }, {
@@ -86,6 +91,7 @@ export const HomeCard = [{
         id: 5,
         title: "Name Of Shop",
         rating: "5",
+        catagory: "",
         price: 12,
         desc: "card discription here"
     }, {
@@ -93,6 +99,7 @@ export const HomeCard = [{
         id: 6,
         title: "Name Of Shop",
         rating: "5",
+        catagory: "",
         price: 20,
         desc: "card discription here"
     }, {
@@ -100,6 +107,7 @@ export const HomeCard = [{
         id: 7,
         title: "Name Of Shop",
         rating: "5",
+        catagory: "",
         price: 35,
         desc: "card discription here"
     },
@@ -108,6 +116,7 @@ export const HomeCard = [{
         id: 8,
         title: "Name Of Shop",
         rating: "5",
+        catagory: "",
         price: 15,
         desc: "card discription here"
     }, {
@@ -115,6 +124,7 @@ export const HomeCard = [{
         id: 9,
         title: "Name Of Shop",
         rating: "5",
+        catagory: "",
         price: 25,
         desc: "card discription here"
     }, {
@@ -122,6 +132,7 @@ export const HomeCard = [{
         id: 10,
         title: "Name Of Shop",
         rating: "5",
+        catagory: "",
         price: 20,
         desc: "card discription here"
     }, {
@@ -129,6 +140,7 @@ export const HomeCard = [{
         id: 11,
         title: "Name Of Shop",
         rating: "5",
+        catagory: "",
         price: 10,
         desc: "card discription here"
     },
@@ -137,6 +149,7 @@ export const HomeCard = [{
         id: 12,
         title: "Name Of Shop",
         rating: "5",
+        catagory: "",
         price: 18,
         desc: "card discription here"
     }, {
@@ -144,6 +157,7 @@ export const HomeCard = [{
         id: 13,
         title: "Name Of Shop",
         rating: "5",
+        catagory: "",
         price: 30,
         desc: "card discription here"
     }, {
@@ -151,6 +165,7 @@ export const HomeCard = [{
         id: 14,
         title: "Name Of Shop",
         rating: "5",
+        catagory: "",
         price: 20,
         desc: "card discription here"
     }, {
@@ -158,6 +173,7 @@ export const HomeCard = [{
         id: 15,
         title: "Name Of Shop",
         rating: "5",
+        catagory: "",
         price: 24,
         desc: "card discription here"
     },

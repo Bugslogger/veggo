@@ -4,6 +4,7 @@ import "./head.css";
 import { Close, Menu } from "@mui/icons-material";
 import { Link, NavLink } from "react-router-dom";
 import {getAuth, onAuthStateChanged} from 'firebase/auth';
+import { useSelector } from "react-redux";
 
 const styles = {
   link: {
@@ -14,6 +15,7 @@ const styles = {
 };
 
 const Head = ({ clickMenu, toggleIcons }) => {
+  const cartItem = useSelector((state) => state.addToCart);
 
   const [checkAuth, setcheckAuth] = useState(false);
   useEffect(() => {
@@ -88,7 +90,7 @@ const Head = ({ clickMenu, toggleIcons }) => {
                 }}
               />
             </Link>
-            <span className="notify">5</span>
+            {cartItem.cart.length !==0 ? <span className="notify">{cartItem.cart.length}</span>:null}
           </div>
           <div className="head-menu-icon-container">
             {toggleIcons ? (

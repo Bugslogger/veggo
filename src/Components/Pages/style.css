@@ -171,6 +171,8 @@
 .cr-item-card, .cr-item-shop {
     width: 100%;
     height: auto;
+    max-height: 250px;
+    overflow-y: scroll;
     /* border: 1px solid blue; */
     border-bottom: 1px solid rgba(128, 128, 128, 0.3);
 }
@@ -206,7 +208,7 @@
 
 .cr-item-info {
     width: 100%;
-    height: auto;
+    height: 50px;
     /* border: 1px solid; */
     margin: 8px 0;
     display: flex;
@@ -216,7 +218,7 @@
 }
 
 .cr-item-name {
-    font-size: 20px;
+    font-size: 18px;
     font-family: var(--bodyFont);
     text-transform: capitalize;
 
@@ -229,11 +231,22 @@
     justify-content: space-between;
     align-items: center;
     font-size: 15px;
-    padding: 4px 6px;
+    padding: 4px 0 ;
     text-transform: capitalize;
 }
 
+.btn-qty{
+    padding: 2px 6px;
+    background-color: #ffffff;
+    font-size: 23px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 #unit {
+    width: 40px;
     outline: none;
     border: none;
     padding: 2px;

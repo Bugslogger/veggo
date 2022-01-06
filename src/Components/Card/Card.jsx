@@ -4,6 +4,8 @@ import StarIcon from "@mui/icons-material/Star";
 import "./card.css";
 import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
 import { Add, Delete, Edit, Star } from "@mui/icons-material";
+import { useDispatch, useSelector } from "react-redux";
+import { AddItem } from "../Redux/Action";
 
 const styles = {
   rupees: {
@@ -47,14 +49,30 @@ const Card = ({ itemImage, title, rating, desc, price }) => {
   );
 };
 
-export const Card2 = ({ itemImage, title, rating, desc, price }) => {
+export const Card2 = (props) => {
+
+  const currentCart = useSelector(state => state.addToCart.cart);
+  const dispatch = useDispatch();
+
+  const Items = {
+    name: props.title,
+    image: props.itemImage,
+    price: props.price,
+    id: props.id
+  }
+
+  const addItemToCart = () =>{
+    console.log('props',currentCart);
+    dispatch(AddItem(Items, currentCart));
+}
+
   return (
-    <div className="card2-container">
+    <div id={props.id} className="card2-container">
       <div className="card2-image-container">
-        <img src={itemImage} alt={title} className="card2-image" />
+        <img src={props.itemImage} alt={props.title} className="card2-image" />
       </div>
       <div className="card2-title-container">
-        <div className="card2-name">{title}</div>
+        <div className="card2-name">{props.title}</div>
         <div className="card2-rating">
           <Star style={styles.star} />
           <Star style={styles.star} />
@@ -63,11 +81,11 @@ export const Card2 = ({ itemImage, title, rating, desc, price }) => {
           <Star style={styles.star} />
         </div>
         <div className="card2-price">
-          <CurrencyRupeeIcon style={styles.rupees} /> {price}/kg
+          <CurrencyRupeeIcon style={styles.rupees} /> {props.price}/kg
         </div>
       </div>
-      <div className="card2-button-container">
-        <button className="card2-btn">
+      <div  className="card2-button-container">
+        <button onClick={addItemToCart} id={props.id} className="card2-btn">
           Add <Add style={{ fontSize: "1.2em" }} />
         </button>
       </div>

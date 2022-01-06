@@ -9,7 +9,7 @@ import {
   GoogleAuthProvider,
   onAuthStateChanged,
 } from "firebase/auth";
-
+import { getFirestore, doc, setDoc } from "firebase/firestore";
 import image from "../../images/cover.jpg";
 import "./style.css";
 import { AlertDialogSlide } from "../Comp";
@@ -35,11 +35,17 @@ const LoginPage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log("navigate", navigate);
+    // console.log("navigate", navigate);
     const auth = getAuth();
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        navigate("/");
+        setDoc(doc(getFirestore(), "user", user.uid), {
+          user: user.reloadUserInfo,
+        }).then(() => {
+          navigate("/");
+        }).catch((error)=>{
+          console.log("Error: ",error)
+        })
       } else {
       }
     });
@@ -165,6 +171,7 @@ const LoginPage = () => {
           .then((userCredential) => {
             // Signed in
             const user = userCredential.user;
+            console.log(user);
             setError({
               ...Error,
               errorText: "Your Account has been created",
@@ -206,6 +213,7 @@ const LoginPage = () => {
         const token = credential.accessToken;
         // The signed-in user info.
         const user = result.user;
+        console.log(user);
         // ...
         // console.log("user: ",user+"/n"+"token: ",token+"/n"+"credentials: ", credential);
         setError({

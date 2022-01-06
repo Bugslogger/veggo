@@ -18,9 +18,9 @@ const Home = () => {
 
   const slideOnclick = (e) => {
     if (e.target.id === "left") {
-      console.log((slide.current.scrollLeft += 200));
+      (slide.current.scrollLeft -= 200)
     } else if (e.target.id === "right") {
-      console.log((slide.current.scrollLeft -= 200));
+      (slide.current.scrollLeft += 200)
     }
   };
 
