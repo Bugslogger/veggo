@@ -5,7 +5,6 @@ import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
-import DialogTitle from "@mui/material/DialogTitle";
 import Slide from "@mui/material/Slide";
 
 // image slider catagory
@@ -53,14 +52,16 @@ export const Indicator = () => {
 };
 
 // filter component
-export const Filter = () => {
+export const Filter = (props) => {
+
   return (
-    <div className="filter-container">
-      <div className="filter-box"></div>
-      <div className="filter-box"></div>
-      <div className="filter-box"></div>
-      <div className="filter-box"></div>
-      <div className="filter-box"></div>
+    <div style={props.style} className="filter-container">
+      <div className="filter-box">Filter</div>
+      {
+        props.filter ? props.filter.map((data,index)=>{
+          return(<div key={index + 1} className="filter-box">{data}</div>)
+        }):null
+      }
     </div>
   );
 };
@@ -74,9 +75,6 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 export function AlertDialogSlide({ errorText, bool, handleClose }) {
   return (
     <div>
-      {/* <Button variant="outlined" onClick={handleClickOpen}>
-        Slide in alert dialog
-      </Button> */}
       <Dialog
         open={bool}
         TransitionComponent={Transition}
@@ -84,14 +82,14 @@ export function AlertDialogSlide({ errorText, bool, handleClose }) {
         onClose={handleClose}
         aria-describedby="alert-dialog-slide-description"
       >
-        {/* <DialogTitle>{"Use Google's location service?"}</DialogTitle> */}
+       
         <DialogContent>
           <DialogContentText id="alert-dialog-slide-description">
             {errorText}
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          {/* <Button onClick={handleClose}>Disagree</Button> */}
+       
           <Button onClick={handleClose}>Ok</Button>
         </DialogActions>
       </Dialog>

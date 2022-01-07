@@ -3,10 +3,13 @@ import React from 'react';
 import './style.css';
 import { HomeCard } from '../../data';
 import { Link } from 'react-router-dom';
+import { Filter } from '../Comp';
 
 const HomePageItem = () => {
+    const filterArray = ["Rating","price"]
     return (
         <>
+        <Filter style={{width: "100%"}} filter={filterArray}/>
         <p className='subtopicname'>Top Rated Shops</p>
         <div className="topratedshop">  
             {

@@ -1,12 +1,12 @@
 import { HomeCard } from "../../data";
 import { Card2 } from "../Card/Card";
+import { Filter } from "../Comp";
 import "./style.css";
 
 export const Items = () => {
-
-  return (
+  const filterArray = ["Catagory","price"]
+  return ( <><Filter filter={filterArray}/>
     <div className="items-container">
-      {/* <Filter/> */}
       {HomeCard.map((data, index) => {
         return (
             <Card2
@@ -18,6 +18,6 @@ export const Items = () => {
             />
         );
       })}
-    </div>
+    </div></>
   );
 };
