@@ -11,7 +11,6 @@ const Order = () => {
   useEffect(() => {
     onAuthStateChanged(getAuth(), (user)=>{
       if(user){
-        // navigate("")
       } else {
         navigate('/');
       }

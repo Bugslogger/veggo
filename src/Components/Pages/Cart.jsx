@@ -28,8 +28,8 @@ const navigate = useNavigate();
       } else {
         setshowForm({...showForm, checkAuth: true});
       }
-    })
-  }, [])
+    });
+  }, []);
   const Change = (e) => {
     console.log(e.target.value);
     setshowForm({ ...showForm, inputValue: e.target.value });
