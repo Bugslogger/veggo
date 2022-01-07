@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import "./App.css";
 import Head from "./Components/Head/Head";
 import SliderMenu from "./Components/MenuSlider/SliderMenu";
@@ -13,15 +13,7 @@ import Order from "./Components/Cart/Order";
 // import LogRocket from 'logrocket';
 
 function App() {
-// const isUser = useSelector(state => state.isLogout);
-// const dispatch = useDispatch();
-
   const [showMenu, setshowMenu] = useState(false);
-
-  // useEffect(() => {
-  //   dispatch(chekcAuth());
-  //   console.log(isUser);
-  // }, []);
 
   const menuToggle = () => {
     if (showMenu) {
