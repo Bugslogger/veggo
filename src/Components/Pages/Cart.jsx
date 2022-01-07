@@ -1,22 +1,35 @@
 import CurrencyRupee from "@mui/icons-material/CurrencyRupee";
-import React, {  useState } from "react";
+import React, {  useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { AddressCard, AddressForm } from "../Card/Card";
 import { AddItem, RemoveItem } from "../Redux/Action";
+import {getAuth, onAuthStateChanged} from 'firebase/auth';
 import "./style.css";
+import { useNavigate } from "react-router-dom";
+
 export const Cart = () => {
   const cartItem = useSelector((state) => state.addToCart);
 const dispatch = useDispatch();
-
+const navigate = useNavigate();
   const [showForm, setshowForm] = useState({
     form: false,
     unit: false,
     inputValue: "",
+    checkAuth: false,
   });
   const [formData, setformData] = useState({});
   let sum = 0;
 
+  useEffect(() => {
+    onAuthStateChanged(getAuth(), (user)=>{
+      if(user){
+        setshowForm({...showForm, checkAuth: false});
+      } else {
+        setshowForm({...showForm, checkAuth: true});
+      }
+    })
+  }, [])
   const Change = (e) => {
     console.log(e.target.value);
     setshowForm({ ...showForm, inputValue: e.target.value });
@@ -57,6 +70,12 @@ const dispatch = useDispatch();
       ) : (
         <>
           <div className="cart-left-container">
+            {showForm.checkAuth ? <div className="cl-check-log">
+              <p className="cl-text">You Need To Login Before PLace Your Order</p>
+              <Link to="/login"
+>              <button className="cl-check-log-btn">Login</button>
+</Link>
+            </div>:null}
             <div className="clc-address">
               <div className="clc-ac">
                 <AddressCard />
@@ -69,6 +88,7 @@ const dispatch = useDispatch();
                 Add New Address
               </button>
             </div>
+
             {showForm.form ? (
               <div className="af-container">
                 <h2 className="af-title">Add New Address</h2>
@@ -156,7 +176,11 @@ const dispatch = useDispatch();
                     <p className="d-text">Discount</p>
                     <p className="d-price">25</p>
                   </div>
-                  <div className="crc-i-tp-wd">
+                  <div onClick={()=>{
+                    if(showForm.checkAuth){
+                      navigate("/login");
+                    }
+                  }} className="crc-i-tp-wd">
                     <p className="topay-btn"> To Pay</p>
                     <p className="tp-wd-text">{(sum -= 25)}</p>
                   </div>
@@ -166,6 +190,9 @@ const dispatch = useDispatch();
           </div>
         </>
       )}
+      {/* <AlertDialogSlide
+        errorText="You need" bool="" handleClose=""
+      /> */}
     </div>
   );
 };

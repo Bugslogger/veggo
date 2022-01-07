@@ -62,7 +62,7 @@ export const Card2 = (props) => {
   }
 
   const addItemToCart = () =>{
-    console.log('props',currentCart);
+    // console.log('props',currentCart);
     dispatch(AddItem(Items, currentCart));
 }
 

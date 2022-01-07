@@ -9,10 +9,8 @@ import UserProfile from "./Components/UserProfile/UserProfile";
 import { Cart } from "./Components/Pages/Cart";
 import "./firebaseConfig";
 import LoginPage from "./Components/Pages/LoginPage";
-import { useDispatch, useSelector } from "react-redux";
-import { chekcAuth } from "./Components/Redux/Action";
 import Order from "./Components/Cart/Order";
-
+// import LogRocket from 'logrocket';
 
 function App() {
 // const isUser = useSelector(state => state.isLogout);
@@ -51,5 +49,7 @@ function App() {
     </div>
   );
 }
+
+// LogRocket.init('b4hkxv/veggo');
 
 export default App;
