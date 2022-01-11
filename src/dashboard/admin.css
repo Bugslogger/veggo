@@ -1,0 +1,65 @@
+.admin-container {
+    width: 100%;
+    height: calc(100vh - 70px);
+    border: 1px solid;
+    display: flex;
+    align-items: center;
+}
+
+/* left container */
+.ad-left-container {
+    flex: 1;
+    ;
+    height: 100%;
+    border: 1px solid red;
+}
+
+.adl-drawer {
+    width: 98%;
+    height: 100%;
+    margin: 0 auto;
+    border: 1px solid blue;
+}
+
+.adl-icon-text-container {
+    width: 100%;
+    height: 40px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding: 25px 3px;
+    /* margin: 5px 0; */
+    cursor: pointer;
+    color : rgba(128,128,128,0.8);
+    background-color: #fff;
+    border-bottom: 1px solid rgba(128,128,128,0.6);
+    font-family: var(--headFont);
+    /* border: 1px solid turquoise; */
+}
+
+.adl-icon-text-container:hover {
+    background-color: var(--gClr);
+    color: #fff;
+}
+
+.adl-icon {
+    height: 40px;
+    width: 40px;
+    color: inherit;
+    /* border: 1px solid; */
+    display:  grid;
+    place-items: center;
+    margin-right: 5px;
+}
+
+.adl-text{
+    margin-left: 8px;
+    color: inherit;
+    letter-spacing: 2px;
+}
+
+/* right container */
+.ad-right-container {
+    border: 1px solid;
+    flex: 4;
+}

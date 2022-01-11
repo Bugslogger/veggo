@@ -7,15 +7,14 @@ import { Settings } from "@mui/icons-material";
 import { AlertDialogSlide } from "../Comp";
 import Order from "../Cart/Order";
 import { useNavigate } from "react-router-dom";
-import { getAuth, signOut, onAuthStateChanged } from "@firebase/auth";
-import {getFirestore, doc, getDoc, setDoc} from "firebase/firestore";
-const styles = {
-  link: {
-    width: "100%",
-    height: "auto",
-    BorderBottom: "1px solid rgba(128,128,128,0.3)",
-  },
-};
+import {
+  getAuth,
+  signOut,
+  onAuthStateChanged,
+  updateProfile,
+  updateEmail,reauthenticateWithCredential, 
+} from "@firebase/auth";
+
 const UserProfile = () => {
   const [Check, setCheck] = useState(false);
   const [pop, setpop] = useState(false);
@@ -29,6 +28,7 @@ const UserProfile = () => {
     phone: false,
     name: false,
     bool: false,
+    errorMessage: "",
   });
   const [formData, setformData] = useState({
     name: "",
@@ -40,19 +40,19 @@ const UserProfile = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    onAuthStateChanged(getAuth(), (user)=>{
-      if(user){
-        // console.log(user);
-        getDoc(doc(getFirestore(), "user", user.uid))
-        .then(credentials=>{
-          let getCredentials = credentials.data().user;
-          // console.log(credentials.data().user);
-          setformData({...formData, name: getCredentials.displayName, email: getCredentials.email, image: getCredentials.photoUrl, id: credentials.id})
-        })
+    onAuthStateChanged(getAuth(), (user) => {
+      if (user) {
+        console.log(user);
+        setformData({
+          ...formData,
+          name: user.displayName,
+          email: user.email,
+          image: user.photoURL,
+        });
       } else {
-        navigate('/');
+        navigate("/");
       }
-    })
+    });
   }, []);
 
   // function is called when user click on logout button
@@ -61,12 +61,16 @@ const UserProfile = () => {
       .then(() => {
         // Sign-out successful.
         navigate("/");
-        setError({ ...Error, bool: true });
+        setError({
+          ...Error,
+          bool: true,
+          errorMessage: "you have been logged out",
+        });
       })
       .catch((error) => {
         // An error happened.
         console.log(error);
-        setError({ ...Error, bool: false });
+        setError({ ...Error, bool: true, errorMessage: error });
       });
   };
 
@@ -105,16 +109,54 @@ const UserProfile = () => {
   const FormUpdate = (e) => {
     e.preventDefault();
     if (formData.email !== "" && formData.name !== "" && formData.tel !== "") {
-      // setDoc(doc(getFirestore(), "user", formData.id, {
+      updateProfile(getAuth().currentUser, {
+        displayName: formData.name,
+        photoURL:
+          "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8dXNlcnxlbnwwfHwwfHw%3D&w=1000&q=80",
+      })
+        .then(() => {
+          console.log("updated name and photo");
 
-      // }))
-      setCheck(false);
+          // const auth = getAuth();
+          // const user = auth.currentUser;
+
+          // // TODO(you): prompt the user to re-provide their sign-in credentials
+          // const credential = promptForCredentials();
+
+          // reauthenticateWithCredential(user, credential)
+          //   .then(() => {
+          //     // User re-authenticated.
+          //   })
+          //   .catch((error) => {
+          //     // An error ocurred
+          //     // ...
+          //   });
+
+          updateEmail(getAuth().currentUser, formData.email)
+            .then(() => {
+              console.log("email updated");
+              setError({
+                ...Error,
+                bool: true,
+                errorMessage: "email and name updated",
+              });
+              setCheck(false);
+            })
+            .catch((error) => {
+              setError({ ...Error, bool: true, errorMessage: error });
+              console.log("error", error);
+            });
+        })
+        .catch((error) => {
+          console.log("Error: ", error);
+          setError({ ...Error, bool: true, errorMessage: error });
+        });
     } else {
       alert("empty field");
     }
   };
   // console.log(playloadValue);
-// displays on mobile view
+  // displays on mobile view
   const handleSettingClick = () => {
     if (pop) {
       setpop(false);
@@ -126,7 +168,6 @@ const UserProfile = () => {
   // const LogoutUser = (e) =>{e.preventDefault();}
 
   const CloseDialogue = () => {
-    navigate();
     setError({ ...Error, bool: false });
   };
 
@@ -256,7 +297,6 @@ const UserProfile = () => {
                 style={{
                   color: "grey",
                   borderColor: Error.name ? "red" : "rgba(128,128,128,0.3)",
-
                 }}
                 className="input"
                 type="text"
@@ -347,13 +387,12 @@ const UserProfile = () => {
           </div>
         ) : null}
       </div>
-      {Error.bool ? (
-        <AlertDialogSlide
-          errorText="You HAve Been Logged out."
-          handleClose={CloseDialogue}
-          bool={true}
-        />
-      ) : null}
+
+      <AlertDialogSlide
+        errorText={Error.errorMessage}
+        handleClose={CloseDialogue}
+        bool={Error.bool}
+      />
     </div>
   );
 };

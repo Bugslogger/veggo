@@ -10,6 +10,7 @@ import { Cart } from "./Components/Pages/Cart";
 import "./firebaseConfig";
 import LoginPage from "./Components/Pages/LoginPage";
 import Order from "./Components/Cart/Order";
+import Admin from "./dashboard/Admin";
 // import LogRocket from 'logrocket';
 
 function App() {
@@ -37,6 +38,7 @@ function App() {
           <Route path="/orders" element={<Order/>}/>
           <Route path="/cartorder" element={<Cart/>}/>
           <Route path="/login" element={<LoginPage/>}/>
+          <Route path="/dashboad/admin" element={<Admin/>}/>
         </Routes>
     </div>
   );
