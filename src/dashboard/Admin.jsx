@@ -3,6 +3,7 @@ import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
 import ListAltIcon from "@material-ui/icons/ListAlt";
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import "./admin.css";
+import AddProduct from "./AddProduct";
 
 const Admin = () => {
   return (
@@ -33,7 +34,7 @@ const Admin = () => {
         </div>
       </div>
       <div className="ad-right-container">
-          
+          <AddProduct/>
       </div>
     </div>
   );
