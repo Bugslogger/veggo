@@ -6,7 +6,9 @@
     align-items: center;
 }
 
+
 /* left container */
+
 .ad-left-container {
     flex: 1;
     ;
@@ -30,9 +32,9 @@
     padding: 25px 3px;
     /* margin: 5px 0; */
     cursor: pointer;
-    color : rgba(128,128,128,0.8);
+    color: rgba(128, 128, 128, 0.8);
     background-color: #fff;
-    border-bottom: 1px solid rgba(128,128,128,0.6);
+    border-bottom: 1px solid rgba(128, 128, 128, 0.6);
     font-family: var(--headFont);
     /* border: 1px solid turquoise; */
 }
@@ -47,19 +49,28 @@
     width: 40px;
     color: inherit;
     /* border: 1px solid; */
-    display:  grid;
+    display: grid;
     place-items: center;
     margin-right: 5px;
 }
 
-.adl-text{
+.adl-text {
     margin-left: 8px;
     color: inherit;
     letter-spacing: 2px;
 }
 
+
 /* right container */
+
 .ad-right-container {
     border: 1px solid;
     flex: 4;
+}
+
+.adr-ap-container {
+    width: 100%;
+    height: auto;
+    display: grid;
+    place-items: center;
 }
