@@ -12,8 +12,10 @@ import {
   signOut,
   onAuthStateChanged,
   updateProfile,
-  updateEmail,reauthenticateWithCredential, 
+  updateEmail,
+  reauthenticateWithCredential,
 } from "@firebase/auth";
+import AddProduct from "../../dashboard/AddProduct";
 
 const UserProfile = () => {
   const [Check, setCheck] = useState(false);
@@ -22,6 +24,7 @@ const UserProfile = () => {
     one: true,
     two: false,
     three: false,
+    four: false,
   });
   const [Error, setError] = useState({
     email: false,
@@ -180,6 +183,7 @@ const UserProfile = () => {
               setswitchComponent({
                 ...switchComponent,
                 one: true,
+                four: false,
                 two: false,
                 three: false,
               })
@@ -195,6 +199,7 @@ const UserProfile = () => {
               setswitchComponent({
                 ...switchComponent,
                 two: true,
+                four: false,
                 three: false,
                 one: false,
               })
@@ -210,6 +215,7 @@ const UserProfile = () => {
                 ...switchComponent,
                 three: true,
                 one: false,
+                four: false,
                 two: false,
               })
             }
@@ -217,6 +223,21 @@ const UserProfile = () => {
             className="up-list"
           >
             Reviews
+          </li>
+          <li
+            onClick={() =>
+              setswitchComponent({
+                ...switchComponent,
+                four: true,
+                three: false,
+                one: false,
+                two: false,
+              })
+            }
+            style={{ color: switchComponent.four ? "#48A14D" : null }}
+            className="up-list"
+          >
+            Add Product
           </li>
         </ul>
       </div>
@@ -238,6 +259,7 @@ const UserProfile = () => {
                       two: false,
                       three: false,
                       one: true,
+                      four: false,
                     });
                     setpop(false);
                   }}
@@ -253,6 +275,7 @@ const UserProfile = () => {
                       two: true,
                       three: false,
                       one: false,
+                      four: false,
                     });
                     setpop(false);
                   }}
@@ -268,6 +291,7 @@ const UserProfile = () => {
                       two: false,
                       three: true,
                       one: false,
+                      four: true,
                     });
                     setpop(false);
                   }}
@@ -275,6 +299,22 @@ const UserProfile = () => {
                   className="tooltip-border"
                 >
                   Reviews
+                </li>
+                <li
+                  onClick={() => {
+                    setswitchComponent({
+                      ...switchComponent,
+                      two: false,
+                      three: false,
+                      one: false,
+                      four: true,
+                    });
+                    setpop(false);
+                  }}
+                  style={{ color: switchComponent.four ? "#48A14D" : null }}
+                  className="tooltip-border"
+                >
+                  Add Item
                 </li>
               </ul>
             </div>
@@ -386,8 +426,15 @@ const UserProfile = () => {
             })}
           </div>
         ) : null}
-      </div>
+        {/* add product */}
+        {switchComponent.four ? <div style={{
+          width: "100%",
+          height: "auto",
+          margin: "20px 0 50px 0",
+          padding: "0 5px 20px 5px"
 
+        }} className="addproduct"> <AddProduct verified = {false} /> </div>: null}
+      </div>
       <AlertDialogSlide
         errorText={Error.errorMessage}
         handleClose={CloseDialogue}
