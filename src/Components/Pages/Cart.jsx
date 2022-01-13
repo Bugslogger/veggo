@@ -55,11 +55,11 @@ let userAdd = Address.find(x=>x.id === e.target.id);
       setDoc(doc(getFirestore(), "orders", Auth.uid),{
         userID: Auth.uid,
         username: Auth.displayName,
-        userAddress: "",
-        prodID: "",
-        prodQ: "",
-        price: "",
-        prodName: "", 
+        userAddress: userAdd.form,
+        prodID: cartItem.cart.name,
+        prodQ: cartItem.cart.name,
+        price: cartItem.cart.name,
+        prodName: cartItem.cart.name, 
       })
     }
   }
