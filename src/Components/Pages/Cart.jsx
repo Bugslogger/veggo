@@ -20,7 +20,8 @@ export const Cart = () => {
     checkAuth: false,
   });
   const [Address, setAddress] = useState([
-    {
+   { form: {
+      
       Name: "sarfaraj shah",
       phoneNumber: "7219110733",
       houseNumber: "52",
@@ -29,6 +30,7 @@ export const Cart = () => {
       areaPincode: 440016,
       state: "maharashtra",
     },
+     id: "001",}
   ]);
   const [formData, setformData] = useState({});
   let sum = 0;
@@ -44,11 +46,12 @@ export const Cart = () => {
   }, []);
 
 
-  const getOrder = () => {
+  const getOrder = (e) => {
     let Auth = getAuth().currentUser;
     if (showForm.checkAuth) {
       navigate("/login");
     } else {
+let userAdd = Address.find(x=>x.id === e.target.id);
       setDoc(doc(getFirestore(), "orders", Auth.uid),{
         userID: Auth.uid,
         username: Auth.displayName,
@@ -77,7 +80,7 @@ export const Cart = () => {
   };
   const AddAddress = () => {
     if (formData) {
-      setAddress((Address) => [...Address, formData]);
+      setAddress((Address) => [...Address, {form: formData, id: Math.floor(Math.random() * 999)}]);
       setshowForm({ ...showForm, form: false });
     }
     console.log("formData", formData);
@@ -114,16 +117,18 @@ export const Cart = () => {
               <div className="clc-address">
                 <div className="clc-ac">
                   {Address.map((address, index) => {
+                    console.log(address);
                     return (
                       <AddressCard
                         key={`00${index}`}
-                        name={address.Name}
-                        tel={address.phoneNumber}
-                        city={address.city}
-                        state={address.state}
-                        hn={address.houseNumber}
-                        address={address.areaName}
-                        areaPincode={address.areaPincode}
+                        id={address.id}
+                        name={address.form.Name}
+                        tel={address.form.phoneNumber}
+                        city={address.form.city}
+                        state={address.form.state}
+                        hn={address.form.houseNumber}
+                        address={address.form.areaName}
+                        areaPincode={address.form.areaPincode}
                       />
                     );
                   })}

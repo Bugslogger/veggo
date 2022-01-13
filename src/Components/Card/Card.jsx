@@ -187,7 +187,7 @@ export const ReviewCard = ({ image, username, review }) => {
 
 // address card
 export const AddressCard = (props) => {
-  const { name, tel, city, state, hn, address, areaPincode, landmark , click} = props;
+  const {id, name, tel, city, state, hn, address, areaPincode, landmark , click} = props;
   return (
     <div className="address-container">
       {/* <input type="radio" className="ac-radio" /> */}
@@ -198,7 +198,7 @@ export const AddressCard = (props) => {
         {landmark ? <div className="a-phone">{landmark}</div>:null}
         <div className="a-address">{address}, {city}, {state}, {areaPincode}</div>
       </div>
-      <button onClick={click} className="a-btn">Deliver To Address</button>
+      <button id={id} onClick={click} className="a-btn">Deliver To Address</button>
     </div>
   );
 };
