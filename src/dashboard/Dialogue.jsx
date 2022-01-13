@@ -5,17 +5,12 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import useMediaQuery from '@mui/material/useMediaQuery';
-import { useTheme } from '@mui/material/styles';
 
 export default function ResponsiveDialog({isOpen, close, text, title, event}) {
-  const theme = useTheme();
-  const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
 
   return (
     <div>
       <Dialog
-        fullScreen={fullScreen}
         open={isOpen}
         onClose={close}
         aria-labelledby="responsive-dialog-title"
@@ -30,10 +25,10 @@ export default function ResponsiveDialog({isOpen, close, text, title, event}) {
         </DialogContent>
         <DialogActions>
           <Button autoFocus onClick={close}>
-            Disagree
+            Cancel
           </Button>
           <Button onClick={event} autoFocus>
-            Agree
+            Ok
           </Button>
         </DialogActions>
       </Dialog>

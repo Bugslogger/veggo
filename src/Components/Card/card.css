@@ -220,7 +220,7 @@ transform: scale(1.03);
 /* address card */
 
 .address-container{
-    min-width: 400px;
+    width: 400px;
     height: auto;
     margin: 8px auto;
     display: grid;

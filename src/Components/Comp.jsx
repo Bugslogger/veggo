@@ -56,7 +56,7 @@ export const Filter = (props) => {
 
   return (
     <div style={props.style} className="filter-container">
-      <div className="filter-box">Filter</div>
+      <div style={{paddingLeft: "20px"}} className="filter-box">Filter</div>
       {
         props.filter ? props.filter.map((data,index)=>{
           return(<div key={index + 1} className="filter-box">{data}</div>)

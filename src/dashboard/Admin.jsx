@@ -5,6 +5,7 @@ import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 import "./admin.css";
 import AddProduct from "./AddProduct";
 import OrderList from "./OrderList";
+import Orders from "./Orders";
 
 const Admin = () => {
 
@@ -56,6 +57,15 @@ const Admin = () => {
        {state.one ? <AddProduct verified = {true}/>:null}
         {state.two ? <div className="order-list-table">
           <OrderList />
+        </div>:null}
+        {state.three ? <div className="order-list-table">
+          <h2 style={{
+            marginBottom: "25px",
+            fontFamily: "var(--headFont)",
+            letterSpacing: "2px",
+            color: "var(--gClr)"
+          }}>Customer Orders</h2>
+          <Orders />
         </div>:null}
       </div>
     </div>

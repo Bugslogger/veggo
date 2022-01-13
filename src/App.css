@@ -29,9 +29,9 @@
     --bodyFont: bodyfont;
 }
 
-::-webkit-scrollbar {
+/* ::-webkit-scrollbar {
     display: none;
-}
+} */
 
 a {
     text-decoration: none;
@@ -62,7 +62,7 @@ a {
 .app-relative-container {
     width: 100%;
     height: 100%;
-    overflow: scroll;
+    /* overflow: scroll; */
 }
 
 .app-header-section {
@@ -142,7 +142,7 @@ a {
     display: flex;
     align-items: center;
     justify-content: start;
-    overflow: scroll;
+    overflow-x: scroll;
     scroll-behavior: smooth;
 }
 
@@ -214,7 +214,7 @@ a {
 
 /* filter css */
 .filter-container{
-    width: 90%;
+    width: 100%;
     height: 50px;
     top: 70px;
     position: sticky;

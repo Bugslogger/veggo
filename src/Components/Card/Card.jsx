@@ -50,21 +50,20 @@ const Card = ({ itemImage, title, rating, desc, price }) => {
 };
 
 export const Card2 = (props) => {
-
-  const currentCart = useSelector(state => state.addToCart.cart);
+  const currentCart = useSelector((state) => state.addToCart.cart);
   const dispatch = useDispatch();
 
   const Items = {
     name: props.title,
     image: props.itemImage,
     price: props.price,
-    id: props.id
-  }
+    id: props.id,
+  };
 
-  const addItemToCart = () =>{
+  const addItemToCart = () => {
     // console.log('props',currentCart);
     dispatch(AddItem(Items, currentCart));
-}
+  };
 
   return (
     <div id={props.id} className="card2-container">
@@ -84,7 +83,7 @@ export const Card2 = (props) => {
           <CurrencyRupeeIcon style={styles.rupees} /> {props.price}/kg
         </div>
       </div>
-      <div  className="card2-button-container">
+      <div className="card2-button-container">
         <button onClick={addItemToCart} id={props.id} className="card2-btn">
           Add <Add style={{ fontSize: "1.2em" }} />
         </button>
@@ -187,69 +186,113 @@ export const ReviewCard = ({ image, username, review }) => {
 };
 
 // address card
-export const AddressCard = () => {
+export const AddressCard = (props) => {
+  const { name, tel, city, state, hn, address, areaPincode, landmark , click} = props;
   return (
     <div className="address-container">
       {/* <input type="radio" className="ac-radio" /> */}
       <div className="address">
-        <div className="a-name">Sarfaraj Shah</div>
-        <div className="a-email">sarfaraj@gmail.com</div>
-        <div className="a-phone">0789654231</div>
-        <div className="a-address">hingna road, Nagpur - 440016</div>
+        <div className="a-name">{name}</div>
+        <div className="a-email">{hn}</div>
+        <div className="a-phone">{tel}</div>
+        {landmark ? <div className="a-phone">{landmark}</div>:null}
+        <div className="a-address">{address}, {city}, {state}, {areaPincode}</div>
       </div>
-      <button className="a-btn">Deliver To Address</button>
+      <button onClick={click} className="a-btn">Deliver To Address</button>
     </div>
   );
 };
 
 // add address
-export const AddressForm = ({
-  click,
-  change
-}) => {
-
-
+export const AddressForm = ({ click, change }) => {
   return (
     // <div className="af-container">
-      <form onSubmit={(event)=> {event.preventDefault()}} className="af-form-container">
-        <label>Full Name</label>
-        <input required onChange={change} name="Name" type="text" className="input" placeholder="Full Name" />
-        <label>Mobile Number</label>
-        <input maxLength="10" required onChange={change} name="phoneNumber" type="tel" className="input" placeholder="Enter Your 10 Digit Mobile Number" />
-        <label>Flat, House no., Building, Company, Apartment</label>
-        <input required onChange={change} name="houseNumber"
-          type="text"
-          className="input"
-          placeholder="Flat, House no., Building, Company, Apartment"
-        />
-        <label>Area, Colony, Street, Sector, Village</label>
-        <input required onChange={change} name="areaName"
-          type="text"
-          className="input"
-          placeholder="Area, Colony, Street, Sector, Village"
-        />
-        <label>Landmark</label>
-        <input onChange={change} name="landmark" type="text" className="input" placeholder="Landmark" />
-        <label>Area Pincode</label>
-        <input required onChange={change} name="areaPincode"
-          type="tel"
-          className="input"
-          maxLength="6"
-          placeholder="Area Pincode"
-        />
-        <label>City</label>
-        <input required onChange={change} name="city" type="text" className="input" placeholder="City" />
-        <label>State</label>
-        <input required onChange={change} name="state" type="text" className="input" placeholder="State" />
-        <input onClick={click} type="submit" className="lp-btn" value="Add Address" />
-      </form>
-      // {/* <label htmlFor="select">Address Type</label>
-      // <select id="at">
-      //     <option value="">Select Address Type</option>
-      //     <option value="home"></option>
-      //     <option value="office"></option>
-      // </select> */}
-    // {/* </div> */}
+    <form
+      onSubmit={(event) => {
+        event.preventDefault();
+      }}
+      className="af-form-container"
+    >
+      <label>Full Name</label>
+      <input
+        required
+        onChange={change}
+        name="Name"
+        type="text"
+        className="input"
+        placeholder="Full Name"
+      />
+      <label>Mobile Number</label>
+      <input
+        maxLength="10"
+        required
+        onChange={change}
+        name="phoneNumber"
+        type="tel"
+        className="input"
+        placeholder="Enter Your 10 Digit Mobile Number"
+      />
+      <label>Flat, House no., Building, Company, Apartment</label>
+      <input
+        required
+        onChange={change}
+        name="houseNumber"
+        type="text"
+        className="input"
+        placeholder="Flat, House no., Building, Company, Apartment"
+      />
+      <label>Area, Colony, Street, Sector, Village</label>
+      <input
+        required
+        onChange={change}
+        name="areaName"
+        type="text"
+        className="input"
+        placeholder="Area, Colony, Street, Sector, Village"
+      />
+      <label>Landmark</label>
+      <input
+        onChange={change}
+        name="landmark"
+        type="text"
+        className="input"
+        placeholder="Landmark"
+      />
+      <label>Area Pincode</label>
+      <input
+        required
+        onChange={change}
+        name="areaPincode"
+        type="tel"
+        className="input"
+        maxLength="6"
+        placeholder="Area Pincode"
+      />
+      <label>City</label>
+      <input
+        required
+        onChange={change}
+        name="city"
+        type="text"
+        className="input"
+        placeholder="City"
+      />
+      <label>State</label>
+      <input
+        required
+        onChange={change}
+        name="state"
+        type="text"
+        className="input"
+        placeholder="State"
+      />
+      <input
+        onClick={click}
+        type="submit"
+        className="lp-btn"
+        value="Add Address"
+      />
+    </form>
   );
 };
 
