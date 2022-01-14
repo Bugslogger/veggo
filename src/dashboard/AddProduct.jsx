@@ -6,7 +6,6 @@ import CircularIndeterminate from "./Loader";
 import {getAuth, onAuthStateChanged} from 'firebase/auth';
 
 const AddProduct = (props) => {
-  console.log(props);
   const [state, setstate] = useState({
     image: "",
     name: "",

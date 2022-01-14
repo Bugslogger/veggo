@@ -5,7 +5,14 @@ import { Link } from "react-router-dom";
 import { AddressCard, AddressForm } from "../Card/Card";
 import { AddItem, RemoveItem } from "../Redux/Action";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import {getFirestore, setDoc, doc} from 'firebase/firestore';
+import {
+  getFirestore,
+  setDoc,
+  doc,
+  updateDoc,
+  getDocs,
+  collection,
+} from "firebase/firestore";
 import "./style.css";
 import { useNavigate } from "react-router-dom";
 
@@ -13,6 +20,8 @@ export const Cart = () => {
   const cartItem = useSelector((state) => state.addToCart);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [state, setstate] = useState([]);
+  const [currentUserId, setcurrentUserId] = useState([]);
   const [showForm, setshowForm] = useState({
     form: false,
     unit: false,
@@ -20,17 +29,18 @@ export const Cart = () => {
     checkAuth: false,
   });
   const [Address, setAddress] = useState([
-   { form: {
-      
-      Name: "sarfaraj shah",
-      phoneNumber: "7219110733",
-      houseNumber: "52",
-      areaName: "hingna road",
-      city: "Nagpur",
-      areaPincode: 440016,
-      state: "maharashtra",
+    {
+      form: {
+        Name: "sarfaraj shah",
+        phoneNumber: "7219110733",
+        houseNumber: "52",
+        areaName: "hingna road",
+        city: "Nagpur",
+        areaPincode: 440016,
+        state: "maharashtra",
+      },
+      id: "001",
     },
-     id: "001",}
   ]);
   const [formData, setformData] = useState({});
   let sum = 0;
@@ -39,30 +49,75 @@ export const Cart = () => {
     onAuthStateChanged(getAuth(), (user) => {
       if (user) {
         setshowForm({ ...showForm, checkAuth: false });
+        getDocs(collection(getFirestore(), "orders")).then((doc) => {
+          doc.forEach((docs) => {
+            setstate((state) => [...state, { data: docs.data(), id: docs.id }]);
+          });
+        });
       } else {
         setshowForm({ ...showForm, checkAuth: true });
       }
     });
   }, []);
 
+  function DeliverToAddress(e) {
+    console.log(e.target.id);
+    let userAdd = Address.find((x) => x.id === e.target.id);
+    console.log(userAdd);
+    setcurrentUserId(currentUserId=>[...currentUserId, userAdd]);
+    console.log(currentUserId);
+  }
 
-  const getOrder = (e) => {
+  const getOrder = () => {
     let Auth = getAuth().currentUser;
     if (showForm.checkAuth) {
       navigate("/login");
     } else {
-let userAdd = Address.find(x=>x.id === e.target.id);
-      setDoc(doc(getFirestore(), "orders", Auth.uid),{
-        userID: Auth.uid,
-        username: Auth.displayName,
-        userAddress: userAdd.form,
-        prodID: cartItem.cart.name,
-        prodQ: cartItem.cart.name,
-        price: cartItem.cart.name,
-        prodName: cartItem.cart.name, 
-      })
+      let checkID = state.find((userID) => userID.id === Auth.uid);
+      if (!checkID) {
+        setDoc(doc(getFirestore(), "orders", Auth.uid), {
+          userID: Auth.uid,
+          username: Auth.displayName,
+          orders: [
+            {
+              product: [cartItem.cart],
+              address: [
+                {
+                  Name: currentUserId.Name,
+                  phoneNumber: currentUserId.phoneNumber,
+                  houseNumber: currentUserId.houseNumber,
+                  areaName: currentUserId.areaName,
+                  city: currentUserId.city,
+                  areaPincode: currentUserId.areaPincode,
+                  state: currentUserId.state,
+                },
+              ],
+            },
+          ],
+        });
+      } else {
+        updateDoc(doc(getFirestore(), "orders", Auth.uid), {
+          orders: [
+            ...checkID.data.orders,
+            {
+              product: [cartItem.cart],
+              address: [
+                {
+                  Name: currentUserId.Name,
+                  phoneNumber: currentUserId.phoneNumber,
+                  houseNumber: currentUserId.houseNumber,
+                  areaName: currentUserId.areaName,
+                  city: currentUserId.city,
+                  areaPincode: currentUserId.areaPincode,
+                  state: currentUserId.state,
+                },
+              ],
+            },
+          ],
+        });
+      }
     }
-  }
+  };
 
   const Change = (e) => {
     console.log(e.target.value);
@@ -80,7 +135,10 @@ let userAdd = Address.find(x=>x.id === e.target.id);
   };
   const AddAddress = () => {
     if (formData) {
-      setAddress((Address) => [...Address, {form: formData, id: Math.floor(Math.random() * 999)}]);
+      setAddress((Address) => [
+        ...Address,
+        { form: formData, id: Math.floor(Math.random() * 999) },
+      ]);
       setshowForm({ ...showForm, form: false });
     }
     console.log("formData", formData);
@@ -117,11 +175,11 @@ let userAdd = Address.find(x=>x.id === e.target.id);
               <div className="clc-address">
                 <div className="clc-ac">
                   {Address.map((address, index) => {
-                    console.log(address);
+                    // console.log(address);
                     return (
                       <AddressCard
                         key={`00${index}`}
-                        id={address.id}
+                        ID={address.id}
                         name={address.form.Name}
                         tel={address.form.phoneNumber}
                         city={address.form.city}
@@ -129,6 +187,7 @@ let userAdd = Address.find(x=>x.id === e.target.id);
                         hn={address.form.houseNumber}
                         address={address.form.areaName}
                         areaPincode={address.form.areaPincode}
+                        click={DeliverToAddress}
                       />
                     );
                   })}
@@ -245,10 +304,7 @@ let userAdd = Address.find(x=>x.id === e.target.id);
                     <p className="d-text">Discount</p>
                     <p className="d-price">25</p>
                   </div>
-                  <div
-                    onClick={getOrder}
-                    className="crc-i-tp-wd"
-                  >
+                  <div onClick={getOrder} className="crc-i-tp-wd">
                     <p className="topay-btn"> To Pay</p>
                     <p className="tp-wd-text">{(sum -= 25)}</p>
                   </div>
