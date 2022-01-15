@@ -62,12 +62,13 @@ export const Cart = () => {
 
   function DeliverToAddress(e) {
     console.log(e.target.id);
-    let userAdd = Address.find((x) => x.id === e.target.id);
+    let userAdd = Address.find((x) => x.id.toString() === e.target.id);
     console.log(userAdd);
-    setcurrentUserId(currentUserId=>[...currentUserId, userAdd]);
-    console.log(currentUserId);
-  }
+    console.log(Address);
+    setcurrentUserId([...currentUserId, userAdd]);
 
+  }
+  console.log(currentUserId,"*****",cartItem);
   const getOrder = () => {
     let Auth = getAuth().currentUser;
     if (showForm.checkAuth) {
@@ -80,16 +81,16 @@ export const Cart = () => {
           username: Auth.displayName,
           orders: [
             {
-              product: [cartItem.cart],
+              product: cartItem,
               address: [
                 {
-                  Name: currentUserId.Name,
-                  phoneNumber: currentUserId.phoneNumber,
-                  houseNumber: currentUserId.houseNumber,
-                  areaName: currentUserId.areaName,
-                  city: currentUserId.city,
-                  areaPincode: currentUserId.areaPincode,
-                  state: currentUserId.state,
+                  Name: currentUserId[0].form.Name,
+                  phoneNumber: currentUserId[0].form.phoneNumber,
+                  houseNumber: currentUserId[0].form.houseNumber,
+                  areaName: currentUserId[0].form.areaName,
+                  city: currentUserId[0].form.city,
+                  areaPincode: currentUserId[0].form.areaPincode,
+                  state: currentUserId[0].form.state,
                 },
               ],
             },
@@ -100,16 +101,16 @@ export const Cart = () => {
           orders: [
             ...checkID.data.orders,
             {
-              product: [cartItem.cart],
+              product: cartItem,
               address: [
                 {
-                  Name: currentUserId.Name,
-                  phoneNumber: currentUserId.phoneNumber,
-                  houseNumber: currentUserId.houseNumber,
-                  areaName: currentUserId.areaName,
-                  city: currentUserId.city,
-                  areaPincode: currentUserId.areaPincode,
-                  state: currentUserId.state,
+                  Name: currentUserId[0].form.Name,
+                  phoneNumber: currentUserId[0].form.phoneNumber,
+                  houseNumber: currentUserId[0].form.houseNumber,
+                  areaName: currentUserId[0].form.areaName,
+                  city: currentUserId[0].form.city,
+                  areaPincode: currentUserId[0].form.areaPincode,
+                  state: currentUserId[0].form.state,
                 },
               ],
             },

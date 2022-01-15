@@ -92,14 +92,14 @@ const Orders = () => {
                   </TableHead>
                   <TableBody>
                     {row.orders.map((historyRow) => (
-                      <TableRow key={historyRow.id}>
+                      <TableRow key={historyRow.product.cart[0].id}>
                         <TableCell component="th" scope="row">
-                          {historyRow.id}
+                          {historyRow.product.cart[0].id}
                         </TableCell>
                         <TableCell></TableCell>
-                        <TableCell>{historyRow.name}</TableCell>
-                        <TableCell>{historyRow.price}</TableCell>
-                        <TableCell>{historyRow.qty}</TableCell>
+                        <TableCell>{historyRow.product.cart[0].name}</TableCell>
+                        <TableCell>{historyRow.product.cart[0].price}</TableCell>
+                        <TableCell>{historyRow.product.cart[0].qty}</TableCell>
                       </TableRow>
                     ))}
                   </TableBody>

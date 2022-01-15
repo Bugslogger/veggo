@@ -574,6 +574,7 @@
     .cart-right-container {
         width: 100%;
         margin: 8px 0;
+        height: auto !important;
     }
     .cart-right-container {
         margin-top: 50px;
@@ -613,10 +614,6 @@
     .crc-i-tp-wd {
         margin-top: 20px;
     }
-}
-
-.cltop{
-
 }
 
 

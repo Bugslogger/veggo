@@ -41,11 +41,13 @@ const LoginPage = () => {
       if (user) {
         setDoc(doc(getFirestore(), "user", user.uid), {
           user: user.reloadUserInfo,
-        }).then(() => {
-          navigate("/");
-        }).catch((error)=>{
-          console.log("Error: ",error)
         })
+          .then(() => {
+            navigate("/");
+          })
+          .catch((error) => {
+            console.log("Error: ", error);
+          });
       } else {
       }
     });
@@ -109,6 +111,8 @@ const LoginPage = () => {
         setformData({ ...formData, confirmpassword: "" });
         setError({ ...Error, confirmpassword: true });
       }
+    } else {
+      setformData({ ...formData, [getName]: getValue });
     }
   };
   // validation end******************************
@@ -256,6 +260,24 @@ const LoginPage = () => {
           Capsikon {formToggle ? "Signup" : "Login"}
         </h1>
         <form className="lp-form" method="post">
+          {formToggle ? (
+            <>
+              <label htmlFor="username">Enter Your Name</label>
+              <input
+                placeholder="Enter your name"
+                style={{
+                  borderColor: Error.confirmpassword ? "red" : "",
+                  color: Error.confirmpassword ? "red" : "",
+                }}
+                onChange={(e) => {
+                  handleFormValidate(e.target.name, e.target.value);
+                }}
+                type="text"
+                name="name"
+                className="input"
+              />
+            </>
+          ) : null}
           <label htmlFor="email">Email</label>
           <input
             placeholder="example@gmail.com"
